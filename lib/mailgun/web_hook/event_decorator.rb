@@ -56,6 +56,7 @@ module Mailgun
 
 
         def strip_character(string)
+          return '' if string.nil?
           string = string[1..-1] if string.start_with?('<')
           string = string.chop   if string.end_with?('>')
           string
