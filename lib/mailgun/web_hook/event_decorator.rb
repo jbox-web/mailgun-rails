@@ -13,7 +13,7 @@ module Mailgun
 
 
       def recipient
-        self['recipient']
+        self['recipient'].try(:downcase)
       end
 
 
