@@ -35,7 +35,7 @@ module MailgunRails
     extend ActiveSupport::Concern
 
     included do
-      skip_before_filter :verify_authenticity_token
+      skip_before_filter :verify_authenticity_token, raise: false
       before_filter      :authenticate_mailgun_request!, only: [:create]
     end
 
