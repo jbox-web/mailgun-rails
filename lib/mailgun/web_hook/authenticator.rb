@@ -13,7 +13,7 @@ module Mailgun
 
 
       def authentic?
-        actual_signature == expected_signature
+        secure_compare(actual_signature, expected_signature)
       rescue => e
         Rails.logger.error e.message
         false
@@ -40,6 +40,19 @@ module Mailgun
 
         def token
           event_params.fetch('token')
+        end
+
+
+        # From Devise : https://github.com/plataformatec/devise/blob/master/lib/devise.rb#L485
+        # constant-time comparison algorithm to prevent timing attacks
+        #
+        def secure_compare(a, b)
+          return false if a.blank? || b.blank? || a.bytesize != b.bytesize
+          l = a.unpack "C#{a.bytesize}"
+
+          res = 0
+          b.each_byte { |byte| res |= byte ^ l.shift }
+          res == 0
         end
 
     end
