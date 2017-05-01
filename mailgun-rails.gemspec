@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.description = %q{Provides webhook processing and event decoration to make using Mailgun with Rails just that much easier}
   s.license     = 'MIT'
 
-  s.add_dependency 'activesupport', '>= 4.0', '< 5.1'
+  s.add_dependency 'activesupport', '>= 4.2'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
