@@ -79,7 +79,7 @@ module MailgunRails
 
     # Handles controller :create action (corresponds to a POST from Mailgun).
     def create
-      processor = Mailgun::WebHook::Processor.new(params, self)
+      processor = Mailgun::WebHook::Processor.new(mailgun_params, self)
       processor.on_unhandled_mailgun_events = self.class.on_unhandled_mailgun_events!
       processor.run!
       head(:ok)
@@ -90,12 +90,17 @@ module MailgunRails
 
 
       def authenticate_mailgun_request!
-        if Mailgun::WebHook::Authenticator.new(self.class.mailgun_key, params).authentic?
+        if Mailgun::WebHook::Authenticator.new(self.class.mailgun_key, mailgun_params).authentic?
           true
         else
           head(:forbidden, text: 'Mailgun signature did not match.')
           false
         end
+      end
+
+
+      def mailgun_params
+        params.permit(:timestamp, :token, :signature, :domain, :'message-headers', :'Message-Id', :recipient, :event, :'body-plain')
       end
 
   end
