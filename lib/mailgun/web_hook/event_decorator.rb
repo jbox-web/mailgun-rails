@@ -22,6 +22,16 @@ module Mailgun
       end
 
 
+      def error
+        self['error']
+      end
+
+
+      def description
+        self['description']
+      end
+
+
       def headers
         data = {}
         headers = JSON.parse(self['message-headers']) rescue []

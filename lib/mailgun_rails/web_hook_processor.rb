@@ -100,7 +100,7 @@ module MailgunRails
 
 
       def mailgun_params
-        params.permit(:timestamp, :token, :signature, :domain, :'message-headers', :'Message-Id', :recipient, :event, :'body-plain')
+        params.permit(:timestamp, :token, :signature, :domain, :'message-headers', :'Message-Id', :recipient, :event, :'body-plain', :error, :description)
       end
 
   end
