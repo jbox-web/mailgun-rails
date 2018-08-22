@@ -1,4 +1,5 @@
 require 'json'
+require 'ostruct'
 require 'openssl'
 require 'active_support'
 require 'active_support/core_ext'

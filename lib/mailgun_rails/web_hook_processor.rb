@@ -90,7 +90,7 @@ module MailgunRails
 
 
       def authenticate_mailgun_request!
-        if Mailgun::WebHook::Authenticator.new(self.class.mailgun_key, mailgun_params).authentic?
+        if Mailgun::WebHook::Authenticator.new(self.class.mailgun_key, mailgun_auth_params[:signature]).authentic?
           true
         else
           head(:forbidden, text: 'Mailgun signature did not match.')
@@ -99,8 +99,13 @@ module MailgunRails
       end
 
 
+      def mailgun_auth_params
+        params.permit(signature: [:signature, :timestamp, :token])
+      end
+
+
       def mailgun_params
-        params.permit(:timestamp, :token, :signature, :domain, :'message-headers', :'Message-Id', :recipient, :event, :'body-plain', :error, :description)
+        params[:'event-data'].to_unsafe_h
       end
 
   end

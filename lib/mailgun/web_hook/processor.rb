@@ -17,7 +17,7 @@ module Mailgun
 
 
       def run!
-        process_event(Mailgun::WebHook::EventDecorator[params])
+        process_event Mailgun::WebHook::MessageDecorator.new(params)
       end
 
 
