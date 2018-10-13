@@ -73,7 +73,7 @@ module MailgunRails
     # Handles controller :show action (corresponds to a Mailgun "are you there?" test ping).
     # Returns 200 and does nothing else.
     def show
-      head(:ok)
+      block_given? ? yield : head(:ok)
     end
 
 
@@ -82,7 +82,7 @@ module MailgunRails
       processor = Mailgun::WebHook::Processor.new(mailgun_params, self)
       processor.on_unhandled_mailgun_events = self.class.on_unhandled_mailgun_events!
       processor.run!
-      head(:ok)
+      block_given? ? yield : head(:ok)
     end
 
 
