@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-lib = File.expand_path('lib', __dir__)
-$LOAD_PATH.push(lib) unless $LOAD_PATH.include?(lib)
-require 'mailgun_rails/version'
+require_relative 'lib/mailgun_rails/version'
 
 Gem::Specification.new do |s|
   s.name        = 'mailgun-rails'
@@ -15,10 +13,7 @@ Gem::Specification.new do |s|
   s.description = %q{Provides webhook processing and event decoration to make using Mailgun with Rails just that much easier}
   s.license     = 'MIT'
 
-  s.add_dependency 'activesupport', '>= 4.2'
+  s.files = `git ls-files`.split("\n")
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.require_paths = ['lib']
+  s.add_runtime_dependency 'activesupport', '>= 4.2'
 end
