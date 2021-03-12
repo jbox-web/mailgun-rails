@@ -9,15 +9,12 @@ module Mailgun
 
       def initialize(api_key, event_params = {})
         @api_key      = api_key
-        @event_params = event_params.to_hash
+        @event_params = event_params&.to_hash || {}
       end
 
 
       def authentic?
         secure_compare(actual_signature, expected_signature)
-      rescue StandardError => e
-        Rails.logger.error e.message
-        false
       end
 
 

@@ -106,4 +106,40 @@ RSpec.describe MailgunRails::WebHookProcessor do
       end
     end
   end
+
+  describe '#authenticate_mailgun_request! (protected)' do
+    let(:params) do
+      ActionController::Parameters.new({
+                                         'signature' => {
+                                           'signature' => '4765ec02775fd594481ce162f479e7deac9edc5ee6cf30bc56e0a9e1125891b2',
+                                           'timestamp' => '1534905663',
+                                           'token' => '30e32e83019a5a439df5bbf47451b5b8a5ebe1940ab66dc34d'
+                                         }
+                                       })
+    end
+
+    before do
+      processor_class.mailgun_webhook_key mailgun_webhook_key
+      processor_instance.params = params
+    end
+
+    subject { processor_instance.send(:authenticate_mailgun_request!) }
+
+    context 'with valid key' do
+      let(:mailgun_webhook_key) { 'key-5c199000e06dc3e92c5a7db9a59f3c22' }
+
+      it 'passes' do
+        expect(subject).to eql(true)
+      end
+    end
+
+    context 'with invalid key' do
+      let(:mailgun_webhook_key) { 'bogative' }
+
+      it 'calls head(:forbidden) and return false' do
+        expect(processor_instance).to receive(:head).with(:forbidden, text: 'Mailgun signature did not match.')
+        expect(subject).to eql(false)
+      end
+    end
+  end
 end

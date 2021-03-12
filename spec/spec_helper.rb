@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'yaml'
-require 'rails'
+require 'rails/all'
 require 'simplecov'
 
 # Start SimpleCov
