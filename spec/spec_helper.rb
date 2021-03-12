@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'yaml'
+require 'rails'
 require 'simplecov'
 
 # Start SimpleCov
@@ -29,3 +31,11 @@ require 'mailgun-rails'
 
 # Load test helpers
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].sort.each { |f| require f }
+
+def fixture_path(name)
+  File.expand_path("fixtures/#{name}", __dir__)
+end
+
+def load_mailgun_event(event)
+  JSON.parse(File.read(fixture_path("events/#{event}.json"))).with_indifferent_access
+end

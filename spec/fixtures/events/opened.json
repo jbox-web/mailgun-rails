@@ -1,0 +1,86 @@
+{
+  "action": "create",
+  "controller": "system/mailgun",
+  "event-data": {
+    "campaigns": [],
+    "client-info": {
+      "client-name": "Chrome",
+      "client-os": "Linux",
+      "client-type": "browser",
+      "device-type": "desktop",
+      "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31"
+    },
+    "event": "OPENED",
+    "geolocation": {
+      "city": "San Francisco",
+      "country": "US",
+      "region": "CA"
+    },
+    "id": "Ase7i2zsRYeDXztHGENqRA",
+    "ip": "50.56.129.169",
+    "log-level": "info",
+    "message": {
+      "headers": {
+        "message-id": "20130503182626.18666.16540@example.net"
+      }
+    },
+    "recipient": "alice@example.com",
+    "recipient-domain": "example.com",
+    "tags": [
+      "my_tag_1",
+      "my_tag_2"
+    ],
+    "timestamp": 1521243339.873676,
+    "user-variables": {
+      "my-var-2": "awesome",
+      "my_var_1": "Mailgun Variable #1"
+    }
+  },
+  "mailgun": {
+    "event-data": {
+      "campaigns": [],
+      "client-info": {
+        "client-name": "Chrome",
+        "client-os": "Linux",
+        "client-type": "browser",
+        "device-type": "desktop",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31"
+      },
+      "event": "OPENED",
+      "geolocation": {
+        "city": "San Francisco",
+        "country": "US",
+        "region": "CA"
+      },
+      "id": "Ase7i2zsRYeDXztHGENqRA",
+      "ip": "50.56.129.169",
+      "log-level": "info",
+      "message": {
+        "headers": {
+          "message-id": "20130503182626.18666.16540@example.net"
+        }
+      },
+      "recipient": "alice@example.com",
+      "recipient-domain": "example.com",
+      "tags": [
+        "my_tag_1",
+        "my_tag_2"
+      ],
+      "timestamp": 1521243339.873676,
+      "user-variables": {
+        "my-var-2": "awesome",
+        "my_var_1": "Mailgun Variable #1"
+      }
+    },
+    "signature": {
+      "signature": "7ae3f1db49a5575adc9e5d00466134130179086974a3bc41fb93e74b00dd17c9",
+      "timestamp": "1615516263",
+      "token": "5cecb576c01eb79c75abcffd2cc255762f55c086b9567d40c4"
+    }
+  },
+  "signature": {
+    "signature": "7ae3f1db49a5575adc9e5d00466134130179086974a3bc41fb93e74b00dd17c9",
+    "timestamp": "1615516263",
+    "token": "5cecb576c01eb79c75abcffd2cc255762f55c086b9567d40c4"
+  }
+}

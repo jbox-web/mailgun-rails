@@ -7,7 +7,7 @@ module Mailgun
       attr_reader :event
 
       def initialize(params = {})
-        @headers = params.fetch(:message).fetch(:headers)
+        @headers = params.fetch(:message, {}).fetch(:headers, {})
         @event   = Mailgun::WebHook::EventDecorator.new(params.except(:message))
       end
 

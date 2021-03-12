@@ -1,0 +1,80 @@
+{
+  "action": "create",
+  "controller": "system/mailgun",
+  "event-data": {
+    "campaigns": [],
+    "envelope": {
+      "sending-ip": "173.193.210.33"
+    },
+    "event": "complained",
+    "flags": {
+      "is-test-mode": false
+    },
+    "id": "-Agny091SquKnsrW2NEKUA",
+    "log-level": "warn",
+    "message": {
+      "attachments": [],
+      "headers": {
+        "from": "Bob <bob@example.net>",
+        "message-id": "20110215055645.25246.63817@example.net",
+        "subject": "Test complained webhook",
+        "to": "Alice <alice@example.com>"
+      },
+      "size": 111
+    },
+    "recipient": "alice@example.com",
+    "tags": [
+      "my_tag_1",
+      "my_tag_2"
+    ],
+    "timestamp": 1521233123.501324,
+    "user-variables": {
+      "my-var-2": "awesome",
+      "my_var_1": "Mailgun Variable #1"
+    }
+  },
+  "mailgun": {
+    "event-data": {
+      "campaigns": [],
+      "envelope": {
+        "sending-ip": "173.193.210.33"
+      },
+      "event": "complained",
+      "flags": {
+        "is-test-mode": false
+      },
+      "id": "-Agny091SquKnsrW2NEKUA",
+      "log-level": "warn",
+      "message": {
+        "attachments": [],
+        "headers": {
+          "from": "Bob <bob@example.net>",
+          "message-id": "20110215055645.25246.63817@example.net",
+          "subject": "Test complained webhook",
+          "to": "Alice <alice@example.com>"
+        },
+        "size": 111
+      },
+      "recipient": "alice@example.com",
+      "tags": [
+        "my_tag_1",
+        "my_tag_2"
+      ],
+      "timestamp": 1521233123.501324,
+      "user-variables": {
+        "my-var-2": "awesome",
+        "my_var_1": "Mailgun Variable #1"
+      }
+    },
+    "signature": {
+      "signature": "a8448497f576b9275e8429b610d99f38091201aa22a2122f75280cbd9a570fdc",
+      "timestamp": "1615516302",
+      "token": "479a8966148f7bcd472732f05f78a8133caa2247f56e827103"
+    }
+  },
+  "signature": {
+    "signature": "a8448497f576b9275e8429b610d99f38091201aa22a2122f75280cbd9a570fdc",
+    "timestamp": "1615516302",
+    "token": "479a8966148f7bcd472732f05f78a8133caa2247f56e827103"
+  }
+}

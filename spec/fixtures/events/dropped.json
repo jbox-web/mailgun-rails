@@ -1,0 +1,118 @@
+{
+  "action": "create",
+  "controller": "system/mailgun",
+  "event-data": {
+    "campaigns": [],
+    "delivery-status": {
+      "attempt-no": 1,
+      "code": 605,
+      "description": "Not delivering to previously bounced address",
+      "message": "",
+      "session-seconds": 0
+    },
+    "envelope": {
+      "sender": "bob@example.net",
+      "targets": "alice@example.com",
+      "transport": "smtp"
+    },
+    "event": "failed",
+    "flags": {
+      "is-authenticated": true,
+      "is-routed": false,
+      "is-system-test": false,
+      "is-test-mode": false
+    },
+    "id": "G9Bn5sl1TC6nu79C8C0bwg",
+    "log-level": "error",
+    "message": {
+      "attachments": [],
+      "headers": {
+        "from": "Bob <bob@example.net>",
+        "message-id": "20130503192659.13651.20287@example.net",
+        "subject": "Test permanent_fail webhook",
+        "to": "Alice <alice@example.com>"
+      },
+      "size": 111
+    },
+    "reason": "suppress-bounce",
+    "recipient": "alice@example.com",
+    "recipient-domain": "example.com",
+    "severity": "permanent",
+    "storage": {
+      "key": "message_key",
+      "url": "https://se.api.mailgun.net/v3/domains/example.net/messages/message_key"
+    },
+    "tags": [
+      "my_tag_1",
+      "my_tag_2"
+    ],
+    "timestamp": 1521233195.375624,
+    "user-variables": {
+      "my-var-2": "awesome",
+      "my_var_1": "Mailgun Variable #1"
+    }
+  },
+  "mailgun": {
+    "event-data": {
+      "campaigns": [],
+      "delivery-status": {
+        "attempt-no": 1,
+        "code": 605,
+        "description": "Not delivering to previously bounced address",
+        "message": "",
+        "session-seconds": 0
+      },
+      "envelope": {
+        "sender": "bob@example.net",
+        "targets": "alice@example.com",
+        "transport": "smtp"
+      },
+      "event": "failed",
+      "flags": {
+        "is-authenticated": true,
+        "is-routed": false,
+        "is-system-test": false,
+        "is-test-mode": false
+      },
+      "id": "G9Bn5sl1TC6nu79C8C0bwg",
+      "log-level": "error",
+      "message": {
+        "attachments": [],
+        "headers": {
+          "from": "Bob <bob@example.net>",
+          "message-id": "20130503192659.13651.20287@example.net",
+          "subject": "Test permanent_fail webhook",
+          "to": "Alice <alice@example.com>"
+        },
+        "size": 111
+      },
+      "reason": "suppress-bounce",
+      "recipient": "alice@example.com",
+      "recipient-domain": "example.com",
+      "severity": "permanent",
+      "storage": {
+        "key": "message_key",
+        "url": "https://se.api.mailgun.net/v3/domains/example.net/messages/message_key"
+      },
+      "tags": [
+        "my_tag_1",
+        "my_tag_2"
+      ],
+      "timestamp": 1521233195.375624,
+      "user-variables": {
+        "my-var-2": "awesome",
+        "my_var_1": "Mailgun Variable #1"
+      }
+    },
+    "signature": {
+      "signature": "0f6f87760cbe514b8db18e24df7442cbe9ea288d951903ce81eb6d8d5311bef8",
+      "timestamp": "1615516285",
+      "token": "14effeeaa01c96a14ee26347ad63623cb1da1546a8a0f537f6"
+    }
+  },
+  "signature": {
+    "signature": "0f6f87760cbe514b8db18e24df7442cbe9ea288d951903ce81eb6d8d5311bef8",
+    "timestamp": "1615516285",
+    "token": "14effeeaa01c96a14ee26347ad63623cb1da1546a8a0f537f6"
+  }
+}

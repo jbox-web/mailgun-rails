@@ -11,7 +11,7 @@ module Mailgun
       # +callback_host+ is a handle to the controller making the request.
       #
       def initialize(params = {}, callback_host = nil)
-        self.params = params
+        self.params = params || {}
         self.callback_host = callback_host
       end
 
@@ -26,7 +26,7 @@ module Mailgun
 
         # rubocop:disable Metrics/MethodLength, Layout/CommentIndentation
         def process_event(event_payload)
-          handler = "handle_#{event_payload.event_type}".to_sym
+          handler = "handle_#{event_payload.event_type}".downcase.to_sym
 
           if callback_host.respond_to?(handler, true)
             callback_host.send(handler, event_payload)
@@ -34,6 +34,7 @@ module Mailgun
             send(handler, event_payload)
           else
             error_message = "Expected handler method `#{handler}` for event type `#{event_payload.event_type}`"
+
             case on_unhandled_mailgun_events
             when :ignore
               # NOP

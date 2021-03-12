@@ -1,0 +1,124 @@
+{
+  "action": "create",
+  "controller": "system/mailgun",
+  "event-data": {
+    "campaigns": [],
+    "delivery-status": {
+      "attempt-no": 1,
+      "certificate-verified": true,
+      "code": 250,
+      "description": "",
+      "message": "OK",
+      "mx-host": "smtp-in.example.com",
+      "session-seconds": 0.4331989288330078,
+      "tls": true,
+      "utf8": true
+    },
+    "envelope": {
+      "sender": "bob@example.net",
+      "sending-ip": "209.61.154.250",
+      "targets": "alice@example.com",
+      "transport": "smtp"
+    },
+    "event": "delivered",
+    "flags": {
+      "is-authenticated": true,
+      "is-routed": false,
+      "is-system-test": false,
+      "is-test-mode": false
+    },
+    "id": "CPgfbmQMTCKtHW6uIWtuVe",
+    "log-level": "info",
+    "message": {
+      "attachments": [],
+      "headers": {
+        "from": "Bob <bob@example.net>",
+        "message-id": "20130503182626.18666.16540@example.net",
+        "subject": "Test delivered webhook",
+        "to": "Alice <alice@example.com>"
+      },
+      "size": 111
+    },
+    "recipient": "alice@example.com",
+    "recipient-domain": "example.com",
+    "storage": {
+      "key": "message_key",
+      "url": "https://se.api.mailgun.net/v3/domains/example.net/messages/message_key"
+    },
+    "tags": [
+      "my_tag_1",
+      "my_tag_2"
+    ],
+    "timestamp": 1521472262.908181,
+    "user-variables": {
+      "my-var-2": "awesome",
+      "my_var_1": "Mailgun Variable #1"
+    }
+  },
+  "mailgun": {
+    "event-data": {
+      "campaigns": [],
+      "delivery-status": {
+        "attempt-no": 1,
+        "certificate-verified": true,
+        "code": 250,
+        "description": "",
+        "message": "OK",
+        "mx-host": "smtp-in.example.com",
+        "session-seconds": 0.4331989288330078,
+        "tls": true,
+        "utf8": true
+      },
+      "envelope": {
+        "sender": "bob@example.net",
+        "sending-ip": "209.61.154.250",
+        "targets": "alice@example.com",
+        "transport": "smtp"
+      },
+      "event": "delivered",
+      "flags": {
+        "is-authenticated": true,
+        "is-routed": false,
+        "is-system-test": false,
+        "is-test-mode": false
+      },
+      "id": "CPgfbmQMTCKtHW6uIWtuVe",
+      "log-level": "info",
+      "message": {
+        "attachments": [],
+        "headers": {
+          "from": "Bob <bob@example.net>",
+          "message-id": "20130503182626.18666.16540@example.net",
+          "subject": "Test delivered webhook",
+          "to": "Alice <alice@example.com>"
+        },
+        "size": 111
+      },
+      "recipient": "alice@example.com",
+      "recipient-domain": "example.com",
+      "storage": {
+        "key": "message_key",
+        "url": "https://se.api.mailgun.net/v3/domains/example.net/messages/message_key"
+      },
+      "tags": [
+        "my_tag_1",
+        "my_tag_2"
+      ],
+      "timestamp": 1521472262.908181,
+      "user-variables": {
+        "my-var-2": "awesome",
+        "my_var_1": "Mailgun Variable #1"
+      }
+    },
+    "signature": {
+      "signature": "39ceee8c87be882225f28c3ada285da3a6cb82bbcd634b7f6c1d340220aec34b",
+      "timestamp": "1615516251",
+      "token": "be0e24e04f1643b0da29f756fff5f988041737b27de0022fdf"
+    }
+  },
+  "signature": {
+    "signature": "39ceee8c87be882225f28c3ada285da3a6cb82bbcd634b7f6c1d340220aec34b",
+    "timestamp": "1615516251",
+    "token": "be0e24e04f1643b0da29f756fff5f988041737b27de0022fdf"
+  }
+}

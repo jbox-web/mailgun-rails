@@ -1,0 +1,130 @@
+{
+  "action": "create",
+  "controller": "system/mailgun",
+  "event-data": {
+    "campaigns": [],
+    "delivery-status": {
+      "attempt-no": 1,
+      "certificate-verified": true,
+      "code": 452,
+      "description": "",
+      "message": "4.2.2 The email account that you tried to reach is over quota. Please direct\n4.2.2 the recipient to\n4.2.2  https://support.example.com/mail/?p=422",
+      "mx-host": "smtp-in.example.com",
+      "retry-seconds": 600,
+      "session-seconds": 0.1281740665435791,
+      "tls": true,
+      "utf8": true
+    },
+    "envelope": {
+      "sender": "bob@example.net",
+      "sending-ip": "209.61.154.250",
+      "targets": "alice@example.com",
+      "transport": "smtp"
+    },
+    "event": "failed",
+    "flags": {
+      "is-authenticated": true,
+      "is-routed": false,
+      "is-system-test": false,
+      "is-test-mode": false
+    },
+    "id": "Fs7-5t81S2ispqxqDw2U4Q",
+    "log-level": "warn",
+    "message": {
+      "attachments": [],
+      "headers": {
+        "from": "Bob <bob@example.net>",
+        "message-id": "20130503182626.18666.16540@example.net",
+        "subject": "Test delivered webhook",
+        "to": "Alice <alice@example.com>"
+      },
+      "size": 111
+    },
+    "reason": "generic",
+    "recipient": "alice@example.com",
+    "recipient-domain": "example.com",
+    "severity": "temporary",
+    "storage": {
+      "key": "message_key",
+      "url": "https://se.api.mailgun.net/v3/domains/example.net/messages/message_key"
+    },
+    "tags": [
+      "my_tag_1",
+      "my_tag_2"
+    ],
+    "timestamp": 1521472262.908181,
+    "user-variables": {
+      "my-var-2": "awesome",
+      "my_var_1": "Mailgun Variable #1"
+    }
+  },
+  "mailgun": {
+    "event-data": {
+      "campaigns": [],
+      "delivery-status": {
+        "attempt-no": 1,
+        "certificate-verified": true,
+        "code": 452,
+        "description": "",
+        "message": "4.2.2 The email account that you tried to reach is over quota. Please direct\n4.2.2 the recipient to\n4.2.2  https://support.example.com/mail/?p=422",
+        "mx-host": "smtp-in.example.com",
+        "retry-seconds": 600,
+        "session-seconds": 0.1281740665435791,
+        "tls": true,
+        "utf8": true
+      },
+      "envelope": {
+        "sender": "bob@example.net",
+        "sending-ip": "209.61.154.250",
+        "targets": "alice@example.com",
+        "transport": "smtp"
+      },
+      "event": "failed",
+      "flags": {
+        "is-authenticated": true,
+        "is-routed": false,
+        "is-system-test": false,
+        "is-test-mode": false
+      },
+      "id": "Fs7-5t81S2ispqxqDw2U4Q",
+      "log-level": "warn",
+      "message": {
+        "attachments": [],
+        "headers": {
+          "from": "Bob <bob@example.net>",
+          "message-id": "20130503182626.18666.16540@example.net",
+          "subject": "Test delivered webhook",
+          "to": "Alice <alice@example.com>"
+        },
+        "size": 111
+      },
+      "reason": "generic",
+      "recipient": "alice@example.com",
+      "recipient-domain": "example.com",
+      "severity": "temporary",
+      "storage": {
+        "key": "message_key",
+        "url": "https://se.api.mailgun.net/v3/domains/example.net/messages/message_key"
+      },
+      "tags": [
+        "my_tag_1",
+        "my_tag_2"
+      ],
+      "timestamp": 1521472262.908181,
+      "user-variables": {
+        "my-var-2": "awesome",
+        "my_var_1": "Mailgun Variable #1"
+      }
+    },
+    "signature": {
+      "signature": "7cf1bb88d6890efa43db2cfd32d1c7c96e6718f0ea50f497df6b77c06b55242e",
+      "timestamp": "1615516326",
+      "token": "f5fc9ec8d9828ae0ad736fd8a06df52c7e68b057c3c53d8def"
+    }
+  },
+  "signature": {
+    "signature": "7cf1bb88d6890efa43db2cfd32d1c7c96e6718f0ea50f497df6b77c06b55242e",
+    "timestamp": "1615516326",
+    "token": "f5fc9ec8d9828ae0ad736fd8a06df52c7e68b057c3c53d8def"
+  }
+}
