@@ -15,5 +15,5 @@ Gem::Specification.new do |s|
 
   s.files = `git ls-files`.split("\n")
 
-  s.add_runtime_dependency 'activesupport', '>= 4.2'
+  s.add_runtime_dependency 'activesupport', '>= 5.2'
 end
