@@ -55,8 +55,13 @@ module MailgunRails
 
       def on_unhandled_mailgun_events!(new_setting = nil)
         @on_unhandled_mailgun_events = new_setting unless new_setting.nil?
-        @on_unhandled_mailgun_events ||= :log
+        @on_unhandled_mailgun_events ||= :raise_exception
         @on_unhandled_mailgun_events
+      end
+
+
+      def log_unhandled_events!
+        on_unhandled_mailgun_events! :log
       end
 
 
