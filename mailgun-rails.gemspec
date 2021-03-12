@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = MailgunRails::VERSION::STRING
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Nicolas Rodriguez']
-  s.email       = ['nrodriguez@jbox-web.com']
+  s.email       = ['nico@nicoladmin.fr']
   s.homepage    = 'https://github.com/jbox-web/mailgun-rails'
   s.summary     = 'Rails integration for Mailgun'
   s.description = 'Provides webhook processing and event decoration to make using Mailgun with Rails much easier'
