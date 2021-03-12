@@ -6,6 +6,7 @@ require 'openssl'
 require 'active_support'
 require 'active_support/core_ext'
 
-require 'mailgun/web_hook'
-require 'mailgun_rails/errors'
-require 'mailgun_rails/web_hook_processor'
+require 'zeitwerk'
+loader = Zeitwerk::Loader.for_gem
+loader.inflector.inflect 'mailgun-rails' => 'MailgunRails'
+loader.setup
