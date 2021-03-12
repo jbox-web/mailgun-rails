@@ -18,4 +18,6 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split("\n")
 
   s.add_runtime_dependency 'activesupport', '>= 5.2'
+
+  s.add_development_dependency 'rubocop'
 end
