@@ -1,5 +1,6 @@
 AllCops:
   NewCops: enable
+  SuggestExtensions: false
   TargetRubyVersion: 2.5
   Exclude:
     - bin/*
@@ -24,3 +25,15 @@ Layout/IndentationConsistency:
 
 Style/NumericPredicate:
   EnforcedStyle: comparison
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
+Layout/LineLength:
+  Exclude:
+    - spec/**/*
+
+Naming/FileName:
+  Exclude:
+    - lib/mailgun-rails.rb

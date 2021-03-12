@@ -107,7 +107,7 @@ module MailgunRails
 
 
       def mailgun_params
-        params[:'event-data'].to_unsafe_h
+        params[:'event-data']&.to_unsafe_h || {}
       end
 
   end
