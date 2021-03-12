@@ -10,3 +10,6 @@ require 'zeitwerk'
 loader = Zeitwerk::Loader.for_gem
 loader.inflector.inflect 'mailgun-rails' => 'MailgunRails'
 loader.setup
+
+module MailgunRails
+end
