@@ -1,19 +1,14 @@
-*.gem
-*.rbc
-.bundle
-.config
-.yardoc
-.rvmrc
-.ruby*
-Gemfile.lock
-InstalledFiles
-_yardoc
-coverage
-doc/
-lib/bundler/man
-pkg
-rdoc
-spec/reports
-test/tmp
-test/version_tmp
-tmp
+# Ignore bundler config.
+/.bundle
+
+# Ignore Gemfile.lock
+/Gemfile.lock
+
+# Ignore test files
+/coverage
+
+# RVM files
+/.ruby-version
+
+# Gem files
+/*.gem
