@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # WebHookProcessor is a module that mixes in Mailgun web hook processing support
 # to a controller in your application.
 #
@@ -100,7 +102,7 @@ module MailgunRails
 
 
       def mailgun_auth_params
-        params.permit(signature: [:signature, :timestamp, :token])
+        params.permit(signature: %i[signature timestamp token])
       end
 
 

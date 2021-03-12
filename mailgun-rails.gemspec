@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ['Nicolas Rodriguez']
   s.email       = ['nrodriguez@jbox-web.com']
   s.homepage    = 'https://github.com/jbox-web/mailgun-rails'
-  s.summary     = %q{Rails integration for Mailgun}
-  s.description = %q{Provides webhook processing and event decoration to make using Mailgun with Rails just that much easier}
+  s.summary     = 'Rails integration for Mailgun'
+  s.description = 'Provides webhook processing and event decoration to make using Mailgun with Rails much easier'
   s.license     = 'MIT'
 
   s.required_ruby_version = '>= 2.5.0'

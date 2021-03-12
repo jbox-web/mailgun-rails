@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 module Mailgun
   module WebHook
     class Authenticator
 
-      attr_reader :api_key
-      attr_reader :event_params
+      attr_reader :api_key, :event_params
 
 
       def initialize(api_key, event_params = {})
@@ -14,7 +15,7 @@ module Mailgun
 
       def authentic?
         secure_compare(actual_signature, expected_signature)
-      rescue => e
+      rescue StandardError => e
         Rails.logger.error e.message
         false
       end
@@ -29,7 +30,7 @@ module Mailgun
 
 
         def expected_signature
-          OpenSSL::HMAC.hexdigest(OpenSSL::Digest::SHA256.new, api_key, "#{timestamp}#{token}")
+          OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('SHA256'), api_key, "#{timestamp}#{token}")
         end
 
 
@@ -45,15 +46,17 @@ module Mailgun
 
         # From Devise : https://github.com/plataformatec/devise/blob/master/lib/devise.rb#L485
         # constant-time comparison algorithm to prevent timing attacks
-        #
+        # rubocop:disable Naming/MethodParameterName, Layout/CommentIndentation
         def secure_compare(a, b)
           return false if a.blank? || b.blank? || a.bytesize != b.bytesize
+
           l = a.unpack "C#{a.bytesize}"
 
           res = 0
           b.each_byte { |byte| res |= byte ^ l.shift }
           res == 0
         end
+        # rubocop:enable Naming/MethodParameterName, Layout/CommentIndentation
 
     end
   end
