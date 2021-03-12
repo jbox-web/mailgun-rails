@@ -13,6 +13,8 @@ Gem::Specification.new do |s|
   s.description = %q{Provides webhook processing and event decoration to make using Mailgun with Rails just that much easier}
   s.license     = 'MIT'
 
+  s.required_ruby_version = '>= 2.5.0'
+
   s.files = `git ls-files`.split("\n")
 
   s.add_runtime_dependency 'activesupport', '>= 5.2'
