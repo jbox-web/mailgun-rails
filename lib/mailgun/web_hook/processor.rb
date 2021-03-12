@@ -40,12 +40,8 @@ module Mailgun
               # NOP
             when :raise_exception
               raise MailgunRails::Errors::MissingEventHandler, error_message
-            else
-              begin
-                Rails.logger.error error_message
-              rescue StandardError
-                nil
-              end
+            when :log
+              Rails.logger.error error_message
             end
           end
         end
