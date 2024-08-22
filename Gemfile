@@ -9,6 +9,7 @@ gem 'rails', '>= 6.0'
 gem 'rake'
 gem 'rspec'
 gem 'rubocop'
+gem 'rubocop-performance'
 gem 'simplecov'
 
 # Fix:
