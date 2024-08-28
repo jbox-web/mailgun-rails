@@ -2,7 +2,7 @@
 
 module Mailgun
   module WebHook
-    class EventDecorator < OpenStruct
+    class EventDecorator < OpenStruct # rubocop:disable Style/OpenStructUse
 
       def delivery_status
         self['delivery-status']

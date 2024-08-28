@@ -51,7 +51,7 @@ module Mailgun
 
           res = 0
           b.each_byte { |byte| res |= byte ^ l.shift }
-          res == 0
+          res.zero?
         end
         # rubocop:enable Naming/MethodParameterName, Layout/CommentIndentation
 

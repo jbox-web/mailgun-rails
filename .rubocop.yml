@@ -1,43 +1,77 @@
 ---
 require:
   - rubocop-performance
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
 
 AllCops:
   NewCops: enable
-  SuggestExtensions: false
   TargetRubyVersion: 3.0
   Exclude:
     - bin/*
+    - lib/mailgun-rails.rb
+
+Gemspec/RequireMFA:
+  Enabled: false
+
+#########
+# STYLE #
+#########
 
 Style/Documentation:
   Enabled: false
 
-Layout/EmptyLinesAroundModuleBody:
-  Enabled: false
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
 
-Layout/EmptyLinesAroundClassBody:
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/BlockDelimiters:
+  AllowedPatterns: ['expect']
+
+##########
+# LAYOUT #
+##########
+
+Layout/LineLength:
+  Max: 125
+
+Layout/EmptyLines:
   Enabled: false
 
 Layout/EmptyLineBetweenDefs:
   Enabled: false
 
-Layout/EmptyLines:
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundModuleBody:
   Enabled: false
 
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
 
-Style/NumericPredicate:
-  EnforcedStyle: comparison
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
 
-Metrics/BlockLength:
-  Exclude:
-    - spec/**/*
+#########
+# RSPEC #
+#########
 
-Layout/LineLength:
-  Exclude:
-    - spec/**/*
+RSpec/NotToNot:
+  EnforcedStyle: to_not
 
-Naming/FileName:
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Max: 3
+
+RSpec/AnyInstance:
   Exclude:
-    - lib/mailgun-rails.rb
+    - spec/mailgun_rails/web_hook_processor_spec.rb

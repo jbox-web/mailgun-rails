@@ -30,7 +30,7 @@ end
 require 'mailgun-rails'
 
 # Load test helpers
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].sort.each { |f| require f }
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 def fixture_path(name)
   File.expand_path("fixtures/#{name}", __dir__)

@@ -4,7 +4,7 @@ require 'spec_helper'
 
 RSpec.describe Mailgun::WebHook::Processor do
   let(:params) { {} }
-  let(:processor_class) { Mailgun::WebHook::Processor }
+  let(:processor_class) { described_class }
   let(:processor) { processor_class.new(params) }
 
   describe '#run!' do
@@ -12,15 +12,17 @@ RSpec.describe Mailgun::WebHook::Processor do
       let(:params) { load_mailgun_event(:clicked)[:'event-data'] }
 
       it 'passes event payload to the handler' do
-        expect(processor).to receive(:handle_clicked)
+        allow(processor).to receive(:handle_clicked)
         processor.run!
+        expect(processor).to have_received(:handle_clicked)
       end
     end
 
-    context 'but no valid handler methods are present' do
+    context 'when no valid handler methods are present' do
       let(:params) { nil }
+
       it 'keeps calm and carries on' do
-        processor.run!
+        expect { processor.run! }.to_not raise_error
       end
     end
 
@@ -32,15 +34,15 @@ RSpec.describe Mailgun::WebHook::Processor do
       context 'with handler method as public' do
         let(:callback_host_class) do
           Class.new do
-            def handle_clicked
+            def handle_clicked(_payload)
               'ok'
             end
           end
         end
 
         it 'passes event payload to the handler' do
-          expect(callback_host).to receive(:handle_clicked).and_return('ok')
-          processor.run!
+          response = processor.run!
+          expect(response).to eq 'ok'
         end
       end
 
@@ -49,15 +51,15 @@ RSpec.describe Mailgun::WebHook::Processor do
           Class.new do
             protected
 
-              def handle_clicked
+              def handle_clicked(_payload)
                 'ok'
               end
           end
         end
 
         it 'passes event payload to the handler' do
-          expect(callback_host).to receive(:handle_clicked).and_return('ok')
-          processor.run!
+          response = processor.run!
+          expect(response).to eq 'ok'
         end
       end
 
@@ -66,50 +68,46 @@ RSpec.describe Mailgun::WebHook::Processor do
           Class.new do
             private
 
-              def handle_clicked
+              def handle_clicked(_payload)
                 'ok'
               end
           end
         end
 
         it 'passes event payload to the handler' do
-          expect(callback_host).to receive(:handle_clicked).and_return('ok')
-          processor.run!
+          response = processor.run!
+          expect(response).to eq 'ok'
         end
       end
 
       context 'with unhandled event' do
         let(:callback_host_class) { Class.new }
 
-        context 'and default missing handler behaviour' do
-          it 'logs an error' do
-            processor.on_unhandled_mailgun_events = :log
-            logger = double
-            expect(logger).to receive(:error)
-            expect(Rails).to receive(:logger).and_return(logger)
+        context 'with default missing handler behaviour' do
+          before { processor.on_unhandled_mailgun_events = :log }
 
-            expect do
-              processor.run!
-            end.to_not raise_error
+          it 'logs an error' do
+            logger = double
+            allow(Rails).to receive(:logger).and_return(logger)
+            allow(logger).to receive(:error)
+
+            expect { processor.run! }.to_not raise_error
+            expect(logger).to have_received(:error)
           end
         end
 
-        context 'and ignore missing handler behaviour' do
+        context 'with ignore missing handler behaviour' do
           it 'keeps calm and carries on' do
             processor.on_unhandled_mailgun_events = :ignore
 
-            expect do
-              processor.run!
-            end.to_not raise_error
+            expect { processor.run! }.to_not raise_error
           end
         end
 
-        context 'and raise_exception missing handler behaviour' do
+        context 'with raise_exception missing handler behaviour' do
           it 'raises an error' do
             processor.on_unhandled_mailgun_events = :raise_exception
-            expect do
-              processor.run!
-            end.to raise_error(MailgunRails::Errors::MissingEventHandler)
+            expect { processor.run! }.to raise_error(MailgunRails::Errors::MissingEventHandler)
           end
         end
       end
