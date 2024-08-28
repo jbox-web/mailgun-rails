@@ -12,3 +12,6 @@
 
 # Gem files
 /*.gem
+
+# Ignore MacOS files
+.DS_Store
