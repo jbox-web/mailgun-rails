@@ -26,5 +26,4 @@ gem 'rubocop-rspec',       require: false
 # Add logger to your Gemfile or gemspec.
 if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.4.0')
   gem 'logger'
-  gem 'ostruct'
 end
