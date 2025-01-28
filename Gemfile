@@ -19,11 +19,8 @@ gem 'rubocop-rake',        require: false
 gem 'rubocop-rspec',       require: false
 
 # Fix:
-# warning: ostruct was loaded from the standard library, but will no longer be part of the default gems since Ruby 3.5.0
-# Add ostruct to your Gemfile or gemspec.
-#
 # warning: logger was loaded from the standard library, but will no longer be part of the default gems since Ruby 3.5.0
 # Add logger to your Gemfile or gemspec.
-if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.4.0')
+if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.4.0') # rubocop:disable Style/IfUnlessModifier
   gem 'logger'
 end
