@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
-require 'yaml'
-require 'rails/all'
 require 'simplecov'
+require 'simplecov_json_formatter'
 
 # Start SimpleCov
 SimpleCov.start do
+  formatter SimpleCov::Formatter::JSONFormatter
   add_filter 'spec/'
 end
+
+require 'yaml'
+require 'rails/all'
 
 # Configure RSpec
 RSpec.configure do |config|
