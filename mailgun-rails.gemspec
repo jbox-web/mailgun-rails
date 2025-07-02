@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.description = 'Provides webhook processing and event decoration to make using Mailgun with Rails much easier'
   s.license     = 'MIT'
 
-  s.required_ruby_version = '>= 3.1.0'
+  s.required_ruby_version = '>= 3.2.0'
 
   s.files = Dir['README.md', 'LICENSE', 'lib/**/*.rb']
 
