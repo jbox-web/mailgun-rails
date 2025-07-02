@@ -14,7 +14,7 @@ module Mailgun
 
 
       def authentic?
-        secure_compare(actual_signature, expected_signature)
+        secure_compare?(actual_signature, expected_signature)
       end
 
 
@@ -44,7 +44,7 @@ module Mailgun
         # From Devise : https://github.com/plataformatec/devise/blob/master/lib/devise.rb#L485
         # constant-time comparison algorithm to prevent timing attacks
         # rubocop:disable Naming/MethodParameterName, Layout/CommentIndentation
-        def secure_compare(a, b)
+        def secure_compare?(a, b)
           return false if a.blank? || b.blank? || a.bytesize != b.bytesize
 
           l = a.unpack "C#{a.bytesize}"

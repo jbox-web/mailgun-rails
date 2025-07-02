@@ -96,7 +96,7 @@ module MailgunRails
     private
 
 
-      def authenticate_mailgun_request!
+      def authenticate_mailgun_request! # rubocop:disable Naming/PredicateMethod
         if Mailgun::WebHook::Authenticator.new(self.class.mailgun_key, mailgun_auth_params[:signature]).authentic?
           true
         else

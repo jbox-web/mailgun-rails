@@ -19,8 +19,8 @@ module Mailgun
         event.event
       end
 
-      def method_missing(method, *args) # rubocop:disable Style/MissingRespondToMissing
-        event.send(method, *args)
+      def method_missing(method, *) # rubocop:disable Style/MissingRespondToMissing
+        event.send(method, *)
       end
 
     end
