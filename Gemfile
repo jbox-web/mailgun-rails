@@ -9,6 +9,7 @@ gem 'rails', '>= 6.0'
 gem 'rake'
 gem 'rspec'
 gem 'simplecov'
+gem 'warning'
 
 # Dev tools / linter
 gem 'guard-rspec',         require: false

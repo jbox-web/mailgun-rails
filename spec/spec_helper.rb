@@ -1,5 +1,20 @@
 # frozen_string_literal: true
 
+# Load ruby-warning gem
+require 'warning'
+
+Warning[:deprecated]   = true
+Warning[:experimental] = true
+Warning[:performance]  = true if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.3.0')
+
+# Ignore all warnings in Gem dependencies
+Gem.path.each do |path|
+  Warning.ignore(//, path)
+end
+
+# Ignore OpenStruct warning (only used in tests)
+Warning.ignore(/OpenStruct use is discouraged for performance reasons/)
+
 require 'simplecov'
 require 'simplecov_json_formatter'
 
