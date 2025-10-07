@@ -19,5 +19,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'activesupport', '>= 7.0'
   s.add_dependency 'ostruct'
-  s.add_dependency 'zeitwerk', '~> 2.6.0'
+  s.add_dependency 'zeitwerk'
 end
