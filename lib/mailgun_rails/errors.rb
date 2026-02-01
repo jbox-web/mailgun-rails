@@ -2,7 +2,10 @@
 
 module MailgunRails
   module Errors
-    Base                = Class.new(StandardError)
-    MissingEventHandler = Class.new(Base)
+    class Base < StandardError
+    end
+
+    class MissingEventHandler < Base
+    end
   end
 end
