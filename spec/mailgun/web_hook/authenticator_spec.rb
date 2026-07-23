@@ -53,6 +53,23 @@ RSpec.describe Mailgun::WebHook::Authenticator do
       end
     end
 
+    context 'when event_params is nil' do
+      let(:params) { nil }
+
+      it 'is false and does not raise' do
+        expect { authenticator.authentic? }.to_not raise_error
+        expect(authenticator.authentic?).to be(false)
+      end
+    end
+
+    context 'when the signature length differs from the expected digest' do
+      let(:signature) { 'deadbeef' }
+
+      it 'is false (constant-time compare bails on size mismatch)' do
+        expect(authenticator.authentic?).to be(false)
+      end
+    end
+
     context 'when the api key is nil' do
       let(:api_key) { nil }
 

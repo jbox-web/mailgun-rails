@@ -67,8 +67,11 @@ module Mailgun
           @logger ||= if defined?(Rails)
                         Rails.logger
                       else
+                        # :nocov: — the test suite always loads Rails (rails/all),
+                        # so this dependency-free fallback is unreachable here.
                         require 'logger'
                         Logger.new($stderr)
+                        # :nocov:
                       end
         end
 

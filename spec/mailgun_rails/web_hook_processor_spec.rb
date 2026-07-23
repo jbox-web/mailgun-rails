@@ -57,11 +57,37 @@ RSpec.describe MailgunRails::WebHookProcessor do
     end
   end
 
+  describe '#mailgun_webhook_tolerance' do
+    context 'when not set' do
+      it 'defaults to the authenticator tolerance' do
+        expect(processor_class.mailgun_webhook_tolerance).to eq(Mailgun::WebHook::Authenticator::DEFAULT_TOLERANCE)
+      end
+    end
+
+    context 'when set to an explicit value' do
+      it 'returns and caches the value' do
+        processor_class.mailgun_webhook_tolerance 600
+
+        expect(processor_class.mailgun_webhook_tolerance).to eq(600)
+      end
+    end
+  end
+
   describe '#show' do
     it 'returns head(:ok)' do
       allow(processor_instance).to receive(:head).with(:ok)
       processor_instance.show
       expect(processor_instance).to have_received(:head).with(:ok)
+    end
+
+    context 'when a block is given' do
+      it 'yields instead of calling head(:ok)' do
+        allow(processor_instance).to receive(:head)
+        yielded = false
+        processor_instance.show { yielded = true }
+        expect(yielded).to be(true)
+        expect(processor_instance).to_not have_received(:head)
+      end
     end
   end
 
@@ -133,6 +159,20 @@ RSpec.describe MailgunRails::WebHookProcessor do
         expect_any_instance_of(Mailgun::WebHook::Processor).to receive(:run!)
         expect_any_instance_of(Mailgun::WebHook::Processor).to_not receive(:logger=)
         processor_instance.create
+      end
+    end
+
+    context 'when a block is given' do
+      before do
+        allow(processor_instance).to receive(:head)
+        allow_any_instance_of(Mailgun::WebHook::Processor).to receive(:run!)
+      end
+
+      it 'yields instead of calling head(:ok)' do
+        yielded = false
+        processor_instance.create { yielded = true }
+        expect(yielded).to be(true)
+        expect(processor_instance).to_not have_received(:head)
       end
     end
   end

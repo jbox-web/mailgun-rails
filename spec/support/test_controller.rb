@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class TestController
-  # Mock some controller behaviour
-  # TODO: we should probably start using a real controller harness for testing
+  # Mock some controller behaviour, for unit-testing the concern's methods in
+  # isolation. A real controller harness now lives alongside these in
+  # spec/support/integration_app.rb (driven by the request specs); this mock is
+  # kept for the fast, dependency-free unit specs.
 
   class << self
     attr_reader :skip_before_action_settings, :before_action_settings
