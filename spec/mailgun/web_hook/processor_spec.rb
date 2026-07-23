@@ -26,6 +26,15 @@ RSpec.describe Mailgun::WebHook::Processor do
       end
     end
 
+    context 'when the event type is blank' do
+      let(:params) { { message: {} } }
+
+      it 'raises a MissingEventHandler with a clear message' do
+        processor.on_unhandled_mailgun_events = :raise_exception
+        expect { processor.run! }.to raise_error(MailgunRails::Errors::MissingEventHandler, /no event type/)
+      end
+    end
+
     context 'with callback host' do
       let(:callback_host) { callback_host_class.new }
       let(:processor)     { processor_class.new(params, callback_host) }

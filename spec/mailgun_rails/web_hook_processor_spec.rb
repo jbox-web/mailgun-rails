@@ -113,6 +113,28 @@ RSpec.describe MailgunRails::WebHookProcessor do
         expect(processor_instance).to have_received(:head).with(:ok)
       end
     end
+
+    context 'when a mailgun_logger is configured' do
+      let(:logger) { instance_double(Logger) }
+
+      before { processor_instance.class.mailgun_logger logger }
+
+      it 'injects the logger into the processor' do
+        allow(processor_instance).to receive(:head).with(:ok)
+        expect_any_instance_of(Mailgun::WebHook::Processor).to receive(:run!)
+        expect_any_instance_of(Mailgun::WebHook::Processor).to receive(:logger=).with(logger)
+        processor_instance.create
+      end
+    end
+
+    context 'when no mailgun_logger is configured' do
+      it 'does not set a logger on the processor' do
+        allow(processor_instance).to receive(:head).with(:ok)
+        expect_any_instance_of(Mailgun::WebHook::Processor).to receive(:run!)
+        expect_any_instance_of(Mailgun::WebHook::Processor).to_not receive(:logger=)
+        processor_instance.create
+      end
+    end
   end
 
   describe '#authenticate_mailgun_request! (protected)' do
@@ -129,6 +151,8 @@ RSpec.describe MailgunRails::WebHookProcessor do
     end
 
     before do
+      # Freeze the clock just after the signed timestamp so the freshness check passes.
+      allow(Time).to receive(:now).and_return(Time.at(1_534_905_663 + 60).utc)
       processor_class.mailgun_webhook_key mailgun_webhook_key
       processor_instance.params = params
     end

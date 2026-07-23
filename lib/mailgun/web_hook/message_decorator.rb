@@ -12,14 +12,18 @@ module Mailgun
       end
 
       def message_id
-        @headers.fetch('message-id')
+        @headers.fetch('message-id', nil)
       end
 
       def event_type
         event.event
       end
 
-      def method_missing(method, *) # rubocop:disable Style/MissingRespondToMissing
+      def respond_to_missing?(method, include_private = false)
+        event.respond_to?(method, include_private)
+      end
+
+      def method_missing(method, *)
         event.send(method, *)
       end
 

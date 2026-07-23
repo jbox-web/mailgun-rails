@@ -5,6 +5,7 @@ module Mailgun
     class Processor
 
       attr_accessor :params, :callback_host, :mailgun_events, :on_unhandled_mailgun_events
+      attr_writer :logger
 
       # Command initialise the processor with +params+ Hash.
       # +params+ is expected to contain an array of mailgun_events.
@@ -24,28 +25,52 @@ module Mailgun
       private
 
 
-        # rubocop:disable Metrics/MethodLength, Layout/CommentIndentation
         def process_event(event_payload)
           handler = "handle_#{event_payload.event_type}".downcase.to_sym
 
           if callback_host.respond_to?(handler, true)
             callback_host.send(handler, event_payload)
-          elsif respond_to?(handler)
+          elsif respond_to?(handler, true)
             send(handler, event_payload)
           else
-            error_message = "Expected handler method `#{handler}` for event type `#{event_payload.event_type}`"
-
-            case on_unhandled_mailgun_events
-            when :ignore
-              # NOP
-            when :raise_exception
-              raise MailgunRails::Errors::MissingEventHandler, error_message
-            when :log
-              Rails.logger.error error_message
-            end
+            handle_unhandled_event(handler, event_payload)
           end
         end
-        # rubocop:enable Metrics/MethodLength, Layout/CommentIndentation
+
+
+        def handle_unhandled_event(handler, event_payload)
+          error_message = unhandled_event_message(handler, event_payload.event_type)
+
+          case on_unhandled_mailgun_events
+          when :ignore
+            # NOP
+          when :raise_exception
+            raise MailgunRails::Errors::MissingEventHandler, error_message
+          when :log
+            logger.error error_message
+          end
+        end
+
+
+        def unhandled_event_message(handler, event_type)
+          if event_type.blank?
+            'Received a Mailgun webhook payload with no event type'
+          else
+            "Expected handler method `#{handler}` for event type `#{event_type}`"
+          end
+        end
+
+
+        # Decoupled from Rails so the core stays transport-agnostic: use the Rails
+        # logger when running inside a Rails app, otherwise fall back to $stderr.
+        def logger
+          @logger ||= if defined?(Rails)
+                        Rails.logger
+                      else
+                        require 'logger'
+                        Logger.new($stderr)
+                      end
+        end
 
     end
   end
